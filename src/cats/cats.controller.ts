@@ -1,3 +1,4 @@
+import { PositiveIntPipe } from './../common/pipes/positiveInt.pipe';
 import {
   Controller,
   Get,
@@ -27,7 +28,8 @@ export class CatsController {
 
   // cats/:id
   @Get(':id')
-  getOneCat(@Param('id', ParseIntPipe) param: number) {
+  // id에 -2.2를 입력해도 ParseIntPipe에서 먼저 -2로 변환하고 PositiveIntPipe로 간다.
+  getOneCat(@Param('id', ParseIntPipe, PositiveIntPipe) param: number) {
     // 이렇게 인자로 명확하게 id라는 키값을 알려주게 되면 value값이 바로 나오게된다.
     // pipe를 통해서 id가 들어왔을때 number로 타입변환을 해줄수 있다.
     // 만약 abc로 전달이 된 경우 validation error도 실행시켜준다.
