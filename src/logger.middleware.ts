@@ -10,7 +10,7 @@ export class LoggerMiddleware implements NestMiddleware {
     res.on('finish', () => {
       // response가 완료가 되었을때를 알려주는 finish라는 이벤트
       this.logger.log(
-        `${req.ip}, ${req.method} ${req.statusCode}`,
+        `${req.ip}, ${req.method} ${res.statusCode}`,
         req.originalUrl,
       );
       // 요청하는거에 대한 정보도 찍히고 반환을 했을때 실패했는지 성공했는지까지도 찍히게 된다.
